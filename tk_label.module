@@ -76,6 +76,9 @@ function tk_label_render_link_icon($terms) {
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function tk_label_form_xml_form_builder_datastream_form_alter(&$form, &$form_state, $form_id) {
+  if(!isset($form['tk_labels'])) {
+    return;
+  }
   $vocabulary = taxonomy_vocabulary_machine_name_load('tk_label');
   $terms = !empty($vocabulary) ? taxonomy_term_load_multiple(array(), array('vid' => $vocabulary->vid)) : array();
   $options = array('' => '- None -');
@@ -248,7 +251,7 @@ function tk_label_xml_datastream_save_metadata_to_object($child, $tk_labels, &$c
  */
 function tk_label_xml_form_builder_datastream_form_batch_finished($success, $results, $operations) {
   if ($success) {
-    drupal_set_message(t('Successfully added the tags "TK Labels" from the current object to @count child objects.', array('@count' => $results['progress'])));
+    drupal_set_message(t('Successfully added the TK Labels tags from the current object to it's direct descendent objects.'));
   }
   else {
     // An error occurred.
