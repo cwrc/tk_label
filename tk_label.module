@@ -34,7 +34,8 @@ function tk_label_get_term_by_field_value($vid, $field_name, $field_value) {
         ->fieldCondition($field_name, 'value', $field_value, '=');
   $result = $query->execute();
   if (isset($result['taxonomy_term'])) {
-    $tid = reset(array_keys($result['taxonomy_term']));
+    $keys = array_keys($result['taxonomy_term']);
+    $tid = reset($keys);
     $term = taxonomy_term_load($tid);
     return $term;
   }
@@ -251,7 +252,7 @@ function tk_label_xml_datastream_save_metadata_to_object($child, $tk_labels, &$c
  */
 function tk_label_xml_form_builder_datastream_form_batch_finished($success, $results, $operations) {
   if ($success) {
-    drupal_set_message(t('Successfully added the TK Labels tags from the current object to it's direct descendent objects.'));
+    drupal_set_message(t("Successfully added the TK Labels tags from the current object to it's direct descendent objects."));
   }
   else {
     // An error occurred.
