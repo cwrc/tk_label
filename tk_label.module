@@ -262,3 +262,65 @@ function tk_label_xml_form_builder_datastream_form_batch_finished($success, $res
     drupal_set_message($message, 'error');
   }
 }
+
+
+
+/**
+ * Show Workflow Stamp label to object.
+ */
+function _tk_label_add_stamp_labels_to_object($object, &$markup) {
+  if (!empty($object['WORKFLOW'])) {
+    $workflow = $object['WORKFLOW']->content;
+
+    $stamp = new SimpleXMLElement($workflow);
+
+    if (!empty($stamp) && !empty($stamp->workflow)) {
+      // Use Xpath to see if an <activity> element exists with:
+      // status="c"
+      // category="peer-reviewed/evaluated"
+      $peer_reviewed = $stamp->xpath('//activity[@status="c"][@category="peer-reviewed/evaluated"]');
+      // Same, but with category="published"
+      $published = $stamp->xpath('//activity[@status="c"][@category="published"]');
+      // If we have both peer reviewed, and published tags...
+      if (!empty($peer_reviewed) && !empty($published)) {
+        // Add the image to the poorly named wokflow_stamp variable.
+        $icon_image = drupal_get_path('theme', 'de_theme') . '/img/peer-reviewed.png';
+        $markup .= '<span class="wokflow-stamp peer-reviewed"><img src="/' . $icon_image . '"></span>';
+      }
+    }
+  }
+}
+
+/**
+ * Show TK label to object.
+ */
+function _tk_label_add_tk_labels_to_object($object, &$markup) {
+  if (!empty($object['MODS'])) {
+    $xlinks = _tk_label_get_attributes_from_xml($object['MODS']->content, '//mods:accessCondition[not(@displayLabel="inherited")]', 'xlink:href');
+    if (!empty($xlinks)) {
+      $terms = tk_label_retrieve_term($xlinks);
+      $markup .= tk_label_render_link_icon($terms);
+    }
+  }
+}
+
+/**
+ * Get the value of attribute from the XML.
+ */
+function _tk_label_get_attributes_from_xml($xml, $query, $attribute) {
+  $values = [];
+
+  $namespace = 'http://www.loc.gov/mods/v3';
+  $doc = new DOMDocument();
+  $doc->loadXML($xml);
+  $xpath = new DOMXPath($doc);
+  $xpath->registerNamespace('mods', $namespace);
+  $results = $xpath->query($query);
+  if ($results->length != 0) {
+    foreach ($results as $result) {
+      $values[] = $result->getAttribute($attribute);
+    }
+  }
+
+  return $values;
+}
