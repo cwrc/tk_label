@@ -33,7 +33,7 @@ function tk_label_taxonomy_default_vocabularies() {
       ),
     ),
     'tk_label' => array(
-      'name' => 'TK Label',
+      'name' => 'Licensing Labels',
       'machine_name' => 'tk_label',
       'description' => '',
       'hierarchy' => 0,
