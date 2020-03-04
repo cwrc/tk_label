@@ -29,7 +29,7 @@ function tk_label_retrieve_term(array $xlinks) {
  */
 function tk_label_get_term_by_field_value($vid, $field_name, $field_value) {
   $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'taxonomy_term')
+ $query->entityCondition('entity_type', 'taxonomy_term')
         ->entityCondition('bundle', $vid, '=')
         ->fieldCondition($field_name, 'value', $field_value, '=');
   $result = $query->execute();
@@ -77,7 +77,8 @@ function tk_label_render_link_icon($terms) {
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function tk_label_form_xml_form_builder_datastream_form_alter(&$form, &$form_state, $form_id) {
-  if(!isset($form['tk_labels'])) {
+  
+if(!isset($form['tk_labels'])) {
     return;
   }
   $vocabulary = taxonomy_vocabulary_machine_name_load('tk_label');
@@ -103,6 +104,7 @@ function tk_label_form_xml_form_builder_datastream_form_alter(&$form, &$form_sta
   }
   array_unshift($form['update']['#submit'], 'tk_label_xml_form_builder_datastream_set_right_information_form_submit');
   $form['update']['#submit'][] = 'tk_label_xml_form_builder_datastream_form_metadata_form_submit';
+
 }
 
 /**
@@ -127,7 +129,7 @@ function tk_label_xml_form_builder_datastream_set_right_information_form_submit(
   if (!empty($form_state['values']['tk_labels'])) {
     $tk_labels = $form_state['values']['tk_labels'];
     foreach ($tk_labels as $key => $label) {
-      if(strlen($label) > 0 ) { 
+      if(count($label) > 0 ) { 
       $term = tk_label_get_term_by_field_value('tk_label', 'field_label_uri', $label['tk_label']);
       $field_description = field_get_items('taxonomy_term', $term, 'description_field');
       $description = strip_tags($field_description[0]['value']);
@@ -225,11 +227,13 @@ function tk_label_xml_datastream_save_metadata_to_object($child, $tk_labels, &$c
         $access_condition_element->setAttribute('xlink:href', $label['tk_label']);
         $access_condition_element->setAttribute('displayLabel', 'inherited');
         $access_condition_element->nodeValue = $label['accessionCondition'];
-        $mods_element->appendChild($access_condition_element);
+      $mods_element->appendChild($access_condition_element);
         $context['results']['progress']++;
       }
     }
-    $mods->setContentFromString($doc->saveXML());
+$text = $doc->saveXML();    
+//watchdog('Licensing Labels - Save', '<pre>Dumping @variable </pre>', array('@variable' => print_r($text, true)));
+$mods->setContentFromString($text);
   }
 }
 
@@ -326,3 +330,4 @@ function _tk_label_get_attributes_from_xml($xml, $query, $attribute) {
 
   return $values;
 }
+
