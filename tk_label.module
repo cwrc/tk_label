@@ -127,10 +127,12 @@ function tk_label_xml_form_builder_datastream_set_right_information_form_submit(
   if (!empty($form_state['values']['tk_labels'])) {
     $tk_labels = $form_state['values']['tk_labels'];
     foreach ($tk_labels as $key => $label) {
+      if(strlen($label) > 0 ) { 
       $term = tk_label_get_term_by_field_value('tk_label', 'field_label_uri', $label['tk_label']);
       $field_description = field_get_items('taxonomy_term', $term, 'description_field');
       $description = strip_tags($field_description[0]['value']);
       $form_state['values']['tk_labels'][$key]['accessionCondition'] = $description;
+}
     }
   }
 }
