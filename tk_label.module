@@ -291,7 +291,7 @@ function _tk_label_add_stamp_labels_to_object($object, &$markup) {
       if (!empty($peer_reviewed) && !empty($published)) {
         // Add the image to the poorly named wokflow_stamp variable.
         $icon_image = drupal_get_path('theme', 'de_theme') . '/img/peer-reviewed.png';
-        $markup .= '<span class="wokflow-stamp peer-reviewed"><img src="/' . $icon_image . '"></span>';
+        $markup .= '<span class="wokflow-stamp peer-reviewed"><img src="/' . $icon_image . '" title="Peer Reviewed" alt="Peer Reviewed"></span>';
       }
     }
   }
