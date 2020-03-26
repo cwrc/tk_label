@@ -24,6 +24,15 @@
       <required>FALSE</required>
       <resizable>FALSE</resizable>
       <tree>TRUE</tree>
+      <actions>
+        <create>NULL</create>
+        <read>
+          <path>//mods:mods[1]</path>
+          <context>document</context>
+        </read>
+        <update>NULL</update>
+        <delete>NULL</delete>
+      </actions>
     </properties>
     <children>
       <element name="form-title">
@@ -32,8 +41,8 @@
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
           <collapsible>FALSE</collapsible>
-          <description>&lt;h1&gt;Periodical Article MODS Form&lt;/h1&gt;
-&lt;p&gt;If you think you may have selected the wrong form (e.g. if you can't find a field that you think should be available), retrace your steps and pick another form.&lt;/p&gt;</description>
+          <description>&lt;h1&gt;Book Chapter MODS Form&lt;/h1&gt;
+            &lt;p&gt;If you think you may have selected the wrong form (e.g. if you can't find a field that you think should be available), retrace your steps and pick another form.&lt;/p&gt;</description>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
@@ -127,13 +136,13 @@
                   <autocomplete_path>cwrc/entities/autocomplete/mods_title</autocomplete_path>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>Required.  Title of the periodical article.</description>
+                  <description>Required.  Title of the book chapter, or other part of a larger item (e.g., poem, short story, etc., in a larger work).</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
                   <required>TRUE</required>
                   <resizable>FALSE</resizable>
-                  <title>Periodical Article Title</title>
+                  <title>Book Chapter Title</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -166,9 +175,10 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>Subtitle of the periodical article.</description>
+                  <description>Subtitle of the book chapter.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
+                  <maxlength>150</maxlength>
                   <multiple>FALSE</multiple>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
@@ -206,16 +216,16 @@
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
                   <description>A URI to a title entity that uniquely represents this title; e.g., the URI to the CWRC MODS record for this title, or the URI to the title's "Works" or "Expressions" record in VIAF (Virtual International Authority File).
-&lt;br /&gt;
-&amp;#8226; CWRC entity URI formulation: http://commons.cwrc.ca/PID
-&lt;br /&gt;
-For example, http://commons.cwrc.ca/islandora:6167a5c9-80a3-4c85-8acb-f5ee93b65e21
-&lt;br /&gt;
-The PID can be found after "/islandora/object/" in the URL string to the entity -- change "%3A" after the namespace in the PID to ":".  E.g., from this http://beta.cwrc.ca/islandora/object/islandora%3A6167a5c9-80a3-4c85-8acb-f5ee93b65e21 derive this http://commons.cwrc.ca/islandora:6167a5c9-80a3-4c85-8acb-f5ee93b65e21
-&lt;br /&gt;
-&amp;#8226; VIAF entity URI formulation: http://viaf.org/viaf/PID
-&lt;br /&gt;
-For example, http://viaf.org/viaf/48146462553927771156</description>
+                    &lt;br /&gt;
+                    &amp;#8226; CWRC entity URI formulation: http://commons.cwrc.ca/PID
+                    &lt;br /&gt;
+                    For example, http://commons.cwrc.ca/islandora:6167a5c9-80a3-4c85-8acb-f5ee93b65e21
+                    &lt;br /&gt;
+                    The PID can be found after "/islandora/object/" in the URL string to the entity -- change "%3A" after the namespace in the PID to ":".  E.g., from this http://beta.cwrc.ca/islandora/object/islandora%3A6167a5c9-80a3-4c85-8acb-f5ee93b65e21 derive this http://commons.cwrc.ca/islandora:6167a5c9-80a3-4c85-8acb-f5ee93b65e21
+                    &lt;br /&gt;
+                    &amp;#8226; VIAF entity URI formulation: http://viaf.org/viaf/PID
+                    &lt;br /&gt;
+                    For example, http://viaf.org/viaf/48146462553927771156</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -256,7 +266,7 @@ For example, http://viaf.org/viaf/48146462553927771156</description>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
-              <description>Alternative title of the periodical article.</description>
+              <description>Alternative title of the book chapter.</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
@@ -295,7 +305,7 @@ For example, http://viaf.org/viaf/48146462553927771156</description>
         <properties>
           <type>fieldset</type>
           <access>TRUE</access>
-          <collapsed>TRUE</collapsed>
+          <collapsed>FALSE</collapsed>
           <collapsible>TRUE</collapsible>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
@@ -318,7 +328,7 @@ For example, http://viaf.org/viaf/48146462553927771156</description>
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Author</title>
+              <title>Name</title>
               <tree>TRUE</tree>
             </properties>
             <children>
@@ -442,16 +452,16 @@ For example, http://viaf.org/viaf/48146462553927771156</description>
                       <collapsed>FALSE</collapsed>
                       <collapsible>FALSE</collapsible>
                       <description>A URI to a person entity that uniquely represents this person; e.g. the URI to the CWRC person entity for this name, or the URI to the person's "Personal Names" record in VIAF (Virtual International Authority File). If a corporate name, then use the URI for the CWRC organization entity or VIAF "Corporate Names" record.
-&lt;br /&gt;
-&amp;#8226; CWRC entity URI formulation: http://commons.cwrc.ca/PID
-&lt;br /&gt;
-For example, http://commons.cwrc.ca/cwrc:b774f9b9-9b77-4601-b4b7-1b19947f7800
-&lt;br /&gt;
-The PID can be found after "/islandora/object/" in the URL string to the entity -- change "%3A" after the namespace in the PID to ":".  E.g., from this http://beta.cwrc.ca/islandora/object/cwrc%3Ab774f9b9-9b77-4601-b4b7-1b19947f7800 derive this http://commons.cwrc.ca/cwrc:b774f9b9-9b77-4601-b4b7-1b19947f7800
-&lt;br /&gt;
-&amp;#8226; VIAF entity URI formulation: http://viaf.org/viaf/PID
-&lt;br /&gt;
-For example, http://viaf.org/viaf/56774589</description>
+                        &lt;br /&gt;
+                        &amp;#8226; CWRC entity URI formulation: http://commons.cwrc.ca/PID
+                        &lt;br /&gt;
+                        For example, http://commons.cwrc.ca/cwrc:b774f9b9-9b77-4601-b4b7-1b19947f7800
+                        &lt;br /&gt;
+                        The PID can be found after "/islandora/object/" in the URL string to the entity -- change "%3A" after the namespace in the PID to ":".  E.g., from this http://beta.cwrc.ca/islandora/object/cwrc%3Ab774f9b9-9b77-4601-b4b7-1b19947f7800 derive this http://commons.cwrc.ca/cwrc:b774f9b9-9b77-4601-b4b7-1b19947f7800
+                        &lt;br /&gt;
+                        &amp;#8226; VIAF entity URI formulation: http://viaf.org/viaf/PID
+                        &lt;br /&gt;
+                        For example, http://viaf.org/viaf/56774589</description>
                       <disabled>FALSE</disabled>
                       <executes_submit_callback>FALSE</executes_submit_callback>
                       <multiple>FALSE</multiple>
@@ -483,6 +493,62 @@ For example, http://viaf.org/viaf/56774589</description>
                       </actions>
                     </properties>
                     <children/>
+                  </element>
+                  <element name="given">
+                    <properties>
+                      <type>tags</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>Person's first name or given names. To enter a different set of given names for this person, click on the green [+] button.</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Given Name</title>
+                      <tree>TRUE</tree>
+                    </properties>
+                    <children>
+                      <element name="0">
+                        <properties>
+                          <type>tag</type>
+                          <access>TRUE</access>
+                          <autocomplete_path>islandora/entities/autocomplete/mods_author</autocomplete_path>
+                          <collapsed>FALSE</collapsed>
+                          <collapsible>FALSE</collapsible>
+                          <disabled>FALSE</disabled>
+                          <executes_submit_callback>FALSE</executes_submit_callback>
+                          <multiple>FALSE</multiple>
+                          <required>FALSE</required>
+                          <resizable>FALSE</resizable>
+                          <tree>TRUE</tree>
+                          <actions>
+                            <create>
+                              <path>self::node()</path>
+                              <context>parent</context>
+                              <schema/>
+                              <type>xml</type>
+                              <prefix>NULL</prefix>
+                              <value>&lt;namePart type='given'&gt;%value%&lt;/namePart&gt;</value>
+                            </create>
+                            <read>
+                              <path>mods:namePart[@type='given']</path>
+                              <context>parent</context>
+                            </read>
+                            <update>
+                              <path>self::node()</path>
+                              <context>self</context>
+                            </update>
+                            <delete>
+                              <path>self::node()</path>
+                              <context>self</context>
+                            </delete>
+                          </actions>
+                        </properties>
+                        <children/>
+                      </element>
+                    </children>
                   </element>
                   <element name="alternative">
                     <properties>
@@ -578,62 +644,6 @@ For example, http://viaf.org/viaf/56774589</description>
                       </actions>
                     </properties>
                     <children/>
-                  </element>
-                  <element name="given">
-                    <properties>
-                      <type>tags</type>
-                      <access>TRUE</access>
-                      <collapsed>FALSE</collapsed>
-                      <collapsible>FALSE</collapsible>
-                      <description>Person's first name or given names. To enter a different set of given names for this person, click on the green [+] button.</description>
-                      <disabled>FALSE</disabled>
-                      <executes_submit_callback>FALSE</executes_submit_callback>
-                      <multiple>FALSE</multiple>
-                      <required>FALSE</required>
-                      <resizable>FALSE</resizable>
-                      <title>Given Name</title>
-                      <tree>TRUE</tree>
-                    </properties>
-                    <children>
-                      <element name="0">
-                        <properties>
-                          <type>tag</type>
-                          <access>TRUE</access>
-                          <autocomplete_path>islandora/entities/autocomplete/mods_author</autocomplete_path>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>self::node()</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>xml</type>
-                              <prefix>NULL</prefix>
-                              <value>&lt;namePart type='given'&gt;%value%&lt;/namePart&gt;</value>
-                            </create>
-                            <read>
-                              <path>mods:namePart[@type='given']</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </update>
-                            <delete>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                    </children>
                   </element>
                   <element name="role">
                     <properties>
@@ -796,7 +806,7 @@ For example, http://viaf.org/viaf/56774589</description>
                       <multiple>FALSE</multiple>
                       <required>FALSE</required>
                       <resizable>FALSE</resizable>
-                      <title>Corporate Name</title>
+                      <title>Corporate Author's Name</title>
                       <tree>TRUE</tree>
                     </properties>
                     <children>
@@ -824,7 +834,7 @@ For example, http://viaf.org/viaf/56774589</description>
                             </create>
                             <read>
                               <path>/mods:mods/mods:name[@type='corporate']/mods:namePart[not(@type)]</path>
-                              <context>parent</context>
+                              <context>document</context>
                             </read>
                             <update>
                               <path>self::node()</path>
@@ -1464,7 +1474,7 @@ For example, http://viaf.org/viaf/56774589</description>
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Language(s) / Langue(s)</title>
+              <title>Language</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -1754,7 +1764,7 @@ For example, http://viaf.org/viaf/56774589</description>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
-              <description>Public note about the periodical article.</description>
+              <description>Public note about the book chapter.</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
@@ -1793,7 +1803,7 @@ For example, http://viaf.org/viaf/56774589</description>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
-              <description>Internal note about the periodical article.</description>
+              <description>Internal note about the book chapter.</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
@@ -1832,13 +1842,13 @@ For example, http://viaf.org/viaf/56774589</description>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
-              <description>General note about the periodical article (and that is not flagged using the @type attribute as either a scholar note or a research note).</description>
+              <description>General note about the book chapter (and that is not flagged using the @type attribute as either a scholar note or a research note).</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Note / Note</title>
+              <title>Note</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -2015,20 +2025,20 @@ For example, http://viaf.org/viaf/56774589</description>
                               <collapsed>FALSE</collapsed>
                               <collapsible>FALSE</collapsible>
                               <description>If the topical subject term is for a named entity, you can provide a URI to a named entity (e.g., title, person, organization, or place entity) that uniquely represents this topical subject term named entity reference.
-&lt;br /&gt;
-&amp;#8226; CWRC entity URI formulation: http://commons.cwrc.ca/PID
-&lt;br /&gt;
-For example, http://commons.cwrc.ca/cwrc:eb67c450-cd60-4f81-a7fb-70d29d7b1a4d
-&lt;br /&gt;
-The PID can be found after "/islandora/object/" in the URL string to the entity -- change "%3A" after the namespace in the PID to ":".  E.g., from this http://beta.cwrc.ca/islandora/object/cwrc%3Aeb67c450-cd60-4f81-a7fb-70d29d7b1a4d derive this http://commons.cwrc.ca/cwrc:eb67c450-cd60-4f81-a7fb-70d29d7b1a4d
-&lt;br /&gt;
-&amp;#8226; VIAF entity URI formulation: http://viaf.org/viaf/PID
-&lt;br /&gt;
-For example, http://viaf.org/viaf/131378718
-&lt;br /&gt;
-&amp;#8226; GeoNames entity URI formulation: http://www.geonames.org/PID
-&lt;br /&gt;
-For example, http://www.geonames.org/6094817</description>
+                                &lt;br /&gt;
+                                &amp;#8226; CWRC entity URI formulation: http://commons.cwrc.ca/PID
+                                &lt;br /&gt;
+                                For example, http://commons.cwrc.ca/cwrc:eb67c450-cd60-4f81-a7fb-70d29d7b1a4d
+                                &lt;br /&gt;
+                                The PID can be found after "/islandora/object/" in the URL string to the entity -- change "%3A" after the namespace in the PID to ":".  E.g., from this http://beta.cwrc.ca/islandora/object/cwrc%3Aeb67c450-cd60-4f81-a7fb-70d29d7b1a4d derive this http://commons.cwrc.ca/cwrc:eb67c450-cd60-4f81-a7fb-70d29d7b1a4d
+                                &lt;br /&gt;
+                                &amp;#8226; VIAF entity URI formulation: http://viaf.org/viaf/PID
+                                &lt;br /&gt;
+                                For example, http://viaf.org/viaf/131378718
+                                &lt;br /&gt;
+                                &amp;#8226; GeoNames entity URI formulation: http://www.geonames.org/PID
+                                &lt;br /&gt;
+                                For example, http://www.geonames.org/6094817</description>
                               <disabled>FALSE</disabled>
                               <executes_submit_callback>FALSE</executes_submit_callback>
                               <multiple>FALSE</multiple>
@@ -2120,10 +2130,7 @@ For example, http://www.geonames.org/6094817</description>
                           <prefix>NULL</prefix>
                           <value>subject</value>
                         </create>
-                        <read>
-                          <path>/mods:mods/mods:subject</path>
-                          <context>document</context>
-                        </read>
+                        <read>NULL</read>
                         <update>NULL</update>
                         <delete>NULL</delete>
                       </actions>
@@ -2202,16 +2209,16 @@ For example, http://www.geonames.org/6094817</description>
                               <collapsed>FALSE</collapsed>
                               <collapsible>FALSE</collapsible>
                               <description>A URI to a place entity that uniquely represents this geographic subject term; e.g., the URI to the CWRC place entity for this geographic subject term, or the URI to the place's GeoNames record in the GeoNames database.
-&lt;br /&gt;
-&amp;#8226; CWRC entity URI formulation: http://commons.cwrc.ca/PID
-&lt;br /&gt;
-For example, http://commons.cwrc.ca/cwrc:dd5f13a8-7e2e-43bb-97a6-193fa8b23051
-&lt;br /&gt;
-The PID can be found after "/islandora/object/" in the URL string to the entity -- change "%3A" after the namespace in the PID to ":".  E.g., from this http://beta.cwrc.ca/islandora/object/cwrc%3Add5f13a8-7e2e-43bb-97a6-193fa8b23051 derive this http://commons.cwrc.ca/cwrc:dd5f13a8-7e2e-43bb-97a6-193fa8b23051
-&lt;br /&gt;
-&amp;#8226; GeoNames entity URI formulation: http://www.geonames.org/PID
-&lt;br /&gt;
-For example, http://www.geonames.org/5946768</description>
+                                &lt;br /&gt;
+                                &amp;#8226; CWRC entity URI formulation: http://commons.cwrc.ca/PID
+                                &lt;br /&gt;
+                                For example, http://commons.cwrc.ca/cwrc:dd5f13a8-7e2e-43bb-97a6-193fa8b23051
+                                &lt;br /&gt;
+                                The PID can be found after "/islandora/object/" in the URL string to the entity -- change "%3A" after the namespace in the PID to ":".  E.g., from this http://beta.cwrc.ca/islandora/object/cwrc%3Add5f13a8-7e2e-43bb-97a6-193fa8b23051 derive this http://commons.cwrc.ca/cwrc:dd5f13a8-7e2e-43bb-97a6-193fa8b23051
+                                &lt;br /&gt;
+                                &amp;#8226; GeoNames entity URI formulation: http://www.geonames.org/PID
+                                &lt;br /&gt;
+                                For example, http://www.geonames.org/5946768</description>
                               <disabled>FALSE</disabled>
                               <executes_submit_callback>FALSE</executes_submit_callback>
                               <multiple>FALSE</multiple>
@@ -2252,7 +2259,7 @@ For example, http://www.geonames.org/5946768</description>
               </element>
             </children>
           </element>
-          <element name="temporal-tree">
+          <element name="termporal-tree">
             <properties>
               <type>tabs</type>
               <access>TRUE</access>
@@ -2701,16 +2708,16 @@ For example, http://www.geonames.org/5946768</description>
                               <collapsed>FALSE</collapsed>
                               <collapsible>FALSE</collapsible>
                               <description>A URI to a title entity that uniquely represents this title subject term; e.g., the URI to the CWRC title entity for this title subject term, or the URI to the title's "Works" or "Expressions" record in VIAF (Virtual International Authority File).
-&lt;br /&gt;
-&amp;#8226; CWRC entity URI formulation: http://commons.cwrc.ca/PID
-&lt;br /&gt;
-For example, http://commons.cwrc.ca/islandora:6167a5c9-80a3-4c85-8acb-f5ee93b65e21
-&lt;br /&gt;
-The PID can be found after "/islandora/object/" in the URL string to the entity -- change "%3A" after the namespace in the PID to ":".  E.g., from this http://beta.cwrc.ca/islandora/object/islandora%3A6167a5c9-80a3-4c85-8acb-f5ee93b65e21 derive this http://commons.cwrc.ca/islandora:6167a5c9-80a3-4c85-8acb-f5ee93b65e21
-&lt;br /&gt;
-&amp;#8226; VIAF entity URI formulation: http://viaf.org/viaf/PID
-&lt;br /&gt;
-For example, http://viaf.org/viaf/48146462553927771156</description>
+                                &lt;br /&gt;
+                                &amp;#8226; CWRC entity URI formulation: http://commons.cwrc.ca/PID
+                                &lt;br /&gt;
+                                For example, http://commons.cwrc.ca/islandora:6167a5c9-80a3-4c85-8acb-f5ee93b65e21
+                                &lt;br /&gt;
+                                The PID can be found after "/islandora/object/" in the URL string to the entity -- change "%3A" after the namespace in the PID to ":".  E.g., from this http://beta.cwrc.ca/islandora/object/islandora%3A6167a5c9-80a3-4c85-8acb-f5ee93b65e21 derive this http://commons.cwrc.ca/islandora:6167a5c9-80a3-4c85-8acb-f5ee93b65e21
+                                &lt;br /&gt;
+                                &amp;#8226; VIAF entity URI formulation: http://viaf.org/viaf/PID
+                                &lt;br /&gt;
+                                For example, http://viaf.org/viaf/48146462553927771156</description>
                               <disabled>FALSE</disabled>
                               <executes_submit_callback>FALSE</executes_submit_callback>
                               <multiple>FALSE</multiple>
@@ -2751,7 +2758,7 @@ For example, http://viaf.org/viaf/48146462553927771156</description>
               </element>
             </children>
           </element>
-          <element name="name">
+          <element name="name-tree">
             <properties>
               <type>tabs</type>
               <access>TRUE</access>
@@ -2934,16 +2941,16 @@ For example, http://viaf.org/viaf/48146462553927771156</description>
                               <collapsed>FALSE</collapsed>
                               <collapsible>FALSE</collapsible>
                               <description>A URI to a person or organization entity that uniquely represents this name subject term; e.g., the URI to the CWRC person or organization entity for this name subject term, or the URI to the person's "Personal Names" record or the organization's "Corporate Names" record in VIAF (Virtual International Authority File).
-&lt;br /&gt;
-&amp;#8226; CWRC entity URI formulation: http://commons.cwrc.ca/PID
-&lt;br /&gt;
-For example, http://commons.cwrc.ca/cwrc:b774f9b9-9b77-4601-b4b7-1b19947f7800
-&lt;br /&gt;
-The PID can be found after "/islandora/object/" in the URL string to the entity -- change "%3A" after the namespace in the PID to ":".  E.g., from this http://beta.cwrc.ca/islandora/object/cwrc%3Ab774f9b9-9b77-4601-b4b7-1b19947f7800 derive this http://commons.cwrc.ca/cwrc:b774f9b9-9b77-4601-b4b7-1b19947f7800
-&lt;br /&gt;
-&amp;#8226; VIAF entity URI formulation: http://viaf.org/viaf/PID
-&lt;br /&gt;
-For example, http://viaf.org/viaf/56774589</description>
+                                &lt;br /&gt;
+                                &amp;#8226; CWRC entity URI formulation: http://commons.cwrc.ca/PID
+                                &lt;br /&gt;
+                                For example, http://commons.cwrc.ca/cwrc:b774f9b9-9b77-4601-b4b7-1b19947f7800
+                                &lt;br /&gt;
+                                The PID can be found after "/islandora/object/" in the URL string to the entity -- change "%3A" after the namespace in the PID to ":".  E.g., from this http://beta.cwrc.ca/islandora/object/cwrc%3Ab774f9b9-9b77-4601-b4b7-1b19947f7800 derive this http://commons.cwrc.ca/cwrc:b774f9b9-9b77-4601-b4b7-1b19947f7800
+                                &lt;br /&gt;
+                                &amp;#8226; VIAF entity URI formulation: http://viaf.org/viaf/PID
+                                &lt;br /&gt;
+                                For example, http://viaf.org/viaf/56774589</description>
                               <disabled>FALSE</disabled>
                               <executes_submit_callback>FALSE</executes_submit_callback>
                               <multiple>FALSE</multiple>
@@ -2990,14 +2997,14 @@ For example, http://viaf.org/viaf/56774589</description>
         <properties>
           <type>fieldset</type>
           <access>TRUE</access>
-          <collapsed>TRUE</collapsed>
+          <collapsed>FALSE</collapsed>
           <collapsible>TRUE</collapsible>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>Periodical Information / Information p&#xE9;riodique</title>
+          <title>Book Information / Livre information</title>
           <tree>TRUE</tree>
           <actions>
             <create>
@@ -3054,13 +3061,13 @@ For example, http://viaf.org/viaf/56774589</description>
                   <autocomplete_path>cwrc/entities/autocomplete/mods_title</autocomplete_path>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>Title of the periodical that the article appears in.</description>
+                  <description>Title of the book that the book chapter appears in.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Periodical Title</title>
+                  <title>Book Title</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -3093,7 +3100,7 @@ For example, http://viaf.org/viaf/56774589</description>
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>Subtitle of the periodical that the article appears in.</description>
+                  <description>Subtitle of the book that the book chapter appears in.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -3173,7 +3180,7 @@ For example, http://viaf.org/viaf/56774589</description>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
-              <description>Alternative title of the periodical that the article appears in.</description>
+              <description>Alternative title of the book that the book chapter appears in.</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
@@ -3206,9 +3213,9 @@ For example, http://viaf.org/viaf/56774589</description>
             </properties>
             <children/>
           </element>
-          <element name="originInfo">
+          <element name="name-information">
             <properties>
-              <type>hidden</type>
+              <type>fieldset</type>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
@@ -3217,6 +3224,337 @@ For example, http://viaf.org/viaf/56774589</description>
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="name">
+                <properties>
+                  <type>tabs</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>To enter more names associated with the book that the book chapter appears in, click on the Add button.  Use tabs above to edit each name panel.</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Name</title>
+                  <tree>TRUE</tree>
+                </properties>
+                <children>
+                  <element name="0">
+                    <properties>
+                      <type>tabpanel</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>element</type>
+                          <prefix>NULL</prefix>
+                          <value>name</value>
+                        </create>
+                        <read>
+                          <path>mods:name</path>
+                          <context>parent</context>
+                        </read>
+                        <update>NULL</update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children>
+                      <element name="type">
+                        <properties>
+                          <type>hidden</type>
+                          <access>TRUE</access>
+                          <collapsed>FALSE</collapsed>
+                          <collapsible>FALSE</collapsible>
+                          <default_value>personal</default_value>
+                          <disabled>FALSE</disabled>
+                          <executes_submit_callback>FALSE</executes_submit_callback>
+                          <multiple>FALSE</multiple>
+                          <options>
+                            <personal>personal</personal>
+                            <corporate>corporate</corporate>
+                          </options>
+                          <required>FALSE</required>
+                          <resizable>FALSE</resizable>
+                          <tree>TRUE</tree>
+                          <actions>
+                            <create>
+                              <path>self::node()</path>
+                              <context>parent</context>
+                              <schema/>
+                              <type>attribute</type>
+                              <prefix>NULL</prefix>
+                              <value>type</value>
+                            </create>
+                            <read>
+                              <path>@type</path>
+                              <context>parent</context>
+                            </read>
+                            <update>NULL</update>
+                            <delete>NULL</delete>
+                          </actions>
+                        </properties>
+                        <children/>
+                      </element>
+                      <element name="full">
+                        <properties>
+                          <type>textfield</type>
+                          <access>TRUE</access>
+                          <autocomplete_path>cwrc/entities/autocomplete/mods_author</autocomplete_path>
+                          <collapsed>FALSE</collapsed>
+                          <collapsible>FALSE</collapsible>
+                          <description>Person's full name.  Inverted order is preferred rather than direct order, so last name or family name first, followed by a comma, followed by first or given names.  If desired, the person's name can instead be parsed into family name and given names using the fields below.</description>
+                          <disabled>FALSE</disabled>
+                          <executes_submit_callback>FALSE</executes_submit_callback>
+                          <multiple>FALSE</multiple>
+                          <required>FALSE</required>
+                          <resizable>FALSE</resizable>
+                          <title>Full Name</title>
+                          <tree>TRUE</tree>
+                          <actions>
+                            <create>
+                              <path>self::node()</path>
+                              <context>parent</context>
+                              <schema/>
+                              <type>xml</type>
+                              <prefix>NULL</prefix>
+                              <value>&lt;namePart&gt;%value%&lt;/namePart&gt;</value>
+                            </create>
+                            <read>
+                              <path>mods:namePart[not(@type)]</path>
+                              <context>parent</context>
+                            </read>
+                            <update>
+                              <path>self::node()</path>
+                              <context>self</context>
+                            </update>
+                            <delete>
+                              <path>self::node()</path>
+                              <context>self</context>
+                            </delete>
+                          </actions>
+                        </properties>
+                        <children/>
+                      </element>
+                      <element name="valueURI">
+                        <properties>
+                          <type>textfield</type>
+                          <access>TRUE</access>
+                          <collapsed>FALSE</collapsed>
+                          <collapsible>FALSE</collapsible>
+                          <description>A URI to a person entity that uniquely represents this person; e.g. the URI to the CWRC person entity for this name, or the URI to the person's "Personal Names" record in VIAF (Virtual International Authority File).</description>
+                          <disabled>FALSE</disabled>
+                          <executes_submit_callback>FALSE</executes_submit_callback>
+                          <multiple>FALSE</multiple>
+                          <required>FALSE</required>
+                          <resizable>FALSE</resizable>
+                          <title>URI</title>
+                          <tree>TRUE</tree>
+                          <actions>
+                            <create>
+                              <path>self::node()</path>
+                              <context>parent</context>
+                              <schema/>
+                              <type>attribute</type>
+                              <prefix>NULL</prefix>
+                              <value>valueURI</value>
+                            </create>
+                            <read>
+                              <path>/mods:mods/mods:relatedItem/mods:name/@valueURI</path>
+                              <context>document</context>
+                            </read>
+                            <update>
+                              <path>self::node()</path>
+                              <context>self</context>
+                            </update>
+                            <delete>
+                              <path>self::node()</path>
+                              <context>self</context>
+                            </delete>
+                          </actions>
+                        </properties>
+                        <children/>
+                      </element>
+                      <element name="family">
+                        <properties>
+                          <type>textfield</type>
+                          <access>TRUE</access>
+                          <collapsed>FALSE</collapsed>
+                          <collapsible>FALSE</collapsible>
+                          <description>Person's last name or family name.</description>
+                          <disabled>FALSE</disabled>
+                          <executes_submit_callback>FALSE</executes_submit_callback>
+                          <multiple>FALSE</multiple>
+                          <required>FALSE</required>
+                          <resizable>FALSE</resizable>
+                          <title>Family Name</title>
+                          <tree>TRUE</tree>
+                          <actions>
+                            <create>
+                              <path>self::node()</path>
+                              <context>parent</context>
+                              <schema/>
+                              <type>xml</type>
+                              <prefix>NULL</prefix>
+                              <value>&lt;namePart type='family'&gt;%value%&lt;/namePart&gt;</value>
+                            </create>
+                            <read>
+                              <path>mods:namePart[@type='family']</path>
+                              <context>parent</context>
+                            </read>
+                            <update>
+                              <path>self::node()</path>
+                              <context>self</context>
+                            </update>
+                            <delete>
+                              <path>self::node()</path>
+                              <context>self</context>
+                            </delete>
+                          </actions>
+                        </properties>
+                        <children/>
+                      </element>
+                      <element name="given">
+                        <properties>
+                          <type>tags</type>
+                          <access>TRUE</access>
+                          <collapsed>FALSE</collapsed>
+                          <collapsible>FALSE</collapsible>
+                          <description>Person's first name or given names. To enter a different set of given names for this person, click on the green [+] button.</description>
+                          <disabled>FALSE</disabled>
+                          <executes_submit_callback>FALSE</executes_submit_callback>
+                          <multiple>FALSE</multiple>
+                          <required>FALSE</required>
+                          <resizable>FALSE</resizable>
+                          <title>Given Name</title>
+                          <tree>TRUE</tree>
+                        </properties>
+                        <children>
+                          <element name="0">
+                            <properties>
+                              <type>tag</type>
+                              <access>TRUE</access>
+                              <collapsed>FALSE</collapsed>
+                              <collapsible>FALSE</collapsible>
+                              <disabled>FALSE</disabled>
+                              <executes_submit_callback>FALSE</executes_submit_callback>
+                              <multiple>FALSE</multiple>
+                              <required>FALSE</required>
+                              <resizable>FALSE</resizable>
+                              <tree>TRUE</tree>
+                              <actions>
+                                <create>
+                                  <path>self::node()</path>
+                                  <context>parent</context>
+                                  <schema/>
+                                  <type>xml</type>
+                                  <prefix>NULL</prefix>
+                                  <value>&lt;namePart type="given"&gt;%value%&lt;/namePart&gt;</value>
+                                </create>
+                                <read>
+                                  <path>mods:namePart[@type='given']</path>
+                                  <context>parent</context>
+                                </read>
+                                <update>
+                                  <path>self::node()</path>
+                                  <context>self</context>
+                                </update>
+                                <delete>
+                                  <path>self::node()</path>
+                                  <context>self</context>
+                                </delete>
+                              </actions>
+                            </properties>
+                            <children/>
+                          </element>
+                        </children>
+                      </element>
+                      <element name="role">
+                        <properties>
+                          <type>tags</type>
+                          <access>TRUE</access>
+                          <collapsed>FALSE</collapsed>
+                          <collapsible>FALSE</collapsible>
+                          <description>Enter a role term (most often will be "Editor").  Choose the MARC relator term (i.e., role term) from &lt;a href="http://www.loc.gov/marc/relators/relaterm.html" target="_blank"&gt;http://www.loc.gov/marc/relators/relaterm.html&lt;/a&gt;.  To enter more than one MARC relator term for this person, click on the green [+] button.</description>
+                          <disabled>FALSE</disabled>
+                          <executes_submit_callback>FALSE</executes_submit_callback>
+                          <multiple>FALSE</multiple>
+                          <required>FALSE</required>
+                          <resizable>FALSE</resizable>
+                          <title>Role</title>
+                          <tree>TRUE</tree>
+                        </properties>
+                        <children>
+                          <element name="0">
+                            <properties>
+                              <type>tag</type>
+                              <access>TRUE</access>
+                              <collapsed>FALSE</collapsed>
+                              <collapsible>FALSE</collapsible>
+                              <disabled>FALSE</disabled>
+                              <executes_submit_callback>FALSE</executes_submit_callback>
+                              <multiple>FALSE</multiple>
+                              <required>FALSE</required>
+                              <resizable>FALSE</resizable>
+                              <tree>TRUE</tree>
+                              <actions>
+                                <create>
+                                  <path>self::node()</path>
+                                  <context>parent</context>
+                                  <schema/>
+                                  <type>xml</type>
+                                  <prefix>NULL</prefix>
+                                  <value>&lt;role&gt;&lt;roleTerm authority="marcrelator" type="text"&gt;%value%&lt;/roleTerm&gt;&lt;/role&gt;</value>
+                                </create>
+                                <read>
+                                  <path>mods:role/mods:roleTerm[@authority='marcrelator' and @type='text']</path>
+                                  <context>parent</context>
+                                </read>
+                                <update>
+                                  <path>self::node()</path>
+                                  <context>self</context>
+                                </update>
+                                <delete>
+                                  <path>self::node()</path>
+                                  <context>self</context>
+                                </delete>
+                              </actions>
+                            </properties>
+                            <children/>
+                          </element>
+                        </children>
+                      </element>
+                    </children>
+                  </element>
+                </children>
+              </element>
+            </children>
+          </element>
+          <element name="originInfo">
+            <properties>
+              <type>fieldset</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Origin Information / Information sur l'origine</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -3236,13 +3574,346 @@ For example, http://viaf.org/viaf/56774589</description>
               </actions>
             </properties>
             <children>
+              <element name="places">
+                <properties>
+                  <type>tabs</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>To enter more than one place of publication or issuance, click on the Add button. Use tabs above to edit each place panel.</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Place of Publication or Issuance</title>
+                  <tree>TRUE</tree>
+                </properties>
+                <children>
+                  <element name="0">
+                    <properties>
+                      <type>tabpanel</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>element</type>
+                          <prefix>NULL</prefix>
+                          <value>place</value>
+                        </create>
+                        <read>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                        </read>
+                        <update>NULL</update>
+                        <delete>NULL</delete>
+                      </actions>
+                    </properties>
+                    <children>
+                      <element name="placeTerm">
+                        <properties>
+                          <type>markup</type>
+                          <access>TRUE</access>
+                          <collapsed>FALSE</collapsed>
+                          <collapsible>FALSE</collapsible>
+                          <disabled>FALSE</disabled>
+                          <executes_submit_callback>FALSE</executes_submit_callback>
+                          <multiple>FALSE</multiple>
+                          <required>FALSE</required>
+                          <resizable>FALSE</resizable>
+                          <tree>TRUE</tree>
+                          <actions>
+                            <create>
+                              <path>self::node()</path>
+                              <context>parent</context>
+                              <schema/>
+                              <type>element</type>
+                              <prefix>NULL</prefix>
+                              <value>placeTerm</value>
+                            </create>
+                            <read>
+                              <path>self::node()</path>
+                              <context>parent</context>
+                            </read>
+                            <update>
+                              <path>self::node()</path>
+                              <context>self</context>
+                            </update>
+                            <delete>NULL</delete>
+                          </actions>
+                        </properties>
+                        <children>
+                          <element name="place">
+                            <properties>
+                              <type>textfield</type>
+                              <access>TRUE</access>
+                              <autocomplete_path>cwrc/entities/autocomplete/mods_place_of_publication</autocomplete_path>
+                              <collapsed>FALSE</collapsed>
+                              <collapsible>FALSE</collapsible>
+                              <description>Enter the place where this item was published or issued (use "city", "city, region", "city, country", or "city, region, country" format).</description>
+                              <disabled>FALSE</disabled>
+                              <executes_submit_callback>FALSE</executes_submit_callback>
+                              <multiple>FALSE</multiple>
+                              <required>FALSE</required>
+                              <resizable>FALSE</resizable>
+                              <title>Place</title>
+                              <tree>TRUE</tree>
+                              <actions>
+                                <create>NULL</create>
+                                <read>
+                                  <path>self::node()</path>
+                                  <context>parent</context>
+                                </read>
+                                <update>
+                                  <path>self::node()</path>
+                                  <context>parent</context>
+                                </update>
+                                <delete>
+                                  <path>self::node()</path>
+                                  <context>parent</context>
+                                </delete>
+                              </actions>
+                            </properties>
+                            <children/>
+                          </element>
+                          <element name="valueURI">
+                            <properties>
+                              <type>textfield</type>
+                              <access>TRUE</access>
+                              <collapsed>FALSE</collapsed>
+                              <collapsible>FALSE</collapsible>
+                              <description>A URI to a place entity that uniquely represents this place; e.g., the URI to the CWRC place entity for this place, or the URI to the place's GeoNames record in the GeoNames database.
+                                &lt;br /&gt;
+                                &amp;#8226; CWRC entity URI formulation: http://commons.cwrc.ca/PID
+                                &lt;br /&gt;
+                                For example, http://commons.cwrc.ca/cwrc:dd5f13a8-7e2e-43bb-97a6-193fa8b23051
+                                &lt;br /&gt;
+                                The PID can be found after "/islandora/object/" in the URL string to the entity -- change "%3A" after the namespace in the PID to ":".  E.g., from this http://beta.cwrc.ca/islandora/object/cwrc%3Add5f13a8-7e2e-43bb-97a6-193fa8b23051 derive this http://commons.cwrc.ca/cwrc:dd5f13a8-7e2e-43bb-97a6-193fa8b23051
+                                &lt;br /&gt;
+                                &amp;#8226; GeoNames entity URI formulation: http://www.geonames.org/PID
+                                &lt;br /&gt;
+                                For example, http://www.geonames.org/5946768</description>
+                              <disabled>FALSE</disabled>
+                              <executes_submit_callback>FALSE</executes_submit_callback>
+                              <multiple>FALSE</multiple>
+                              <required>FALSE</required>
+                              <resizable>FALSE</resizable>
+                              <title>URI</title>
+                              <tree>TRUE</tree>
+                              <actions>
+                                <create>
+                                  <path>self::node()</path>
+                                  <context>parent</context>
+                                  <schema/>
+                                  <type>attribute</type>
+                                  <prefix>NULL</prefix>
+                                  <value>valueURI</value>
+                                </create>
+                                <read>
+                                  <path>@valueURI</path>
+                                  <context>parent</context>
+                                </read>
+                                <update>
+                                  <path>self::node()</path>
+                                  <context>self</context>
+                                </update>
+                                <delete>
+                                  <path>self::node()</path>
+                                  <context>self</context>
+                                </delete>
+                              </actions>
+                            </properties>
+                            <children/>
+                          </element>
+                          <element name="type">
+                            <properties>
+                              <type>hidden</type>
+                              <access>TRUE</access>
+                              <collapsed>FALSE</collapsed>
+                              <collapsible>FALSE</collapsible>
+                              <default_value>text</default_value>
+                              <disabled>FALSE</disabled>
+                              <executes_submit_callback>FALSE</executes_submit_callback>
+                              <multiple>FALSE</multiple>
+                              <required>FALSE</required>
+                              <resizable>FALSE</resizable>
+                              <tree>TRUE</tree>
+                              <actions>
+                                <create>
+                                  <path>self::node()</path>
+                                  <context>parent</context>
+                                  <schema/>
+                                  <type>attribute</type>
+                                  <prefix>NULL</prefix>
+                                  <value>type</value>
+                                </create>
+                                <read>
+                                  <path>@type</path>
+                                  <context>parent</context>
+                                </read>
+                                <update>NULL</update>
+                                <delete>NULL</delete>
+                              </actions>
+                            </properties>
+                            <children/>
+                          </element>
+                        </children>
+                      </element>
+                    </children>
+                  </element>
+                </children>
+              </element>
+              <element name="publishers">
+                <properties>
+                  <type>tags</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Enter the name of the entity that published or issued the resource.  To enter more than one issuing entity, click on the green [+] button.</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Publisher</title>
+                  <tree>TRUE</tree>
+                </properties>
+                <children>
+                  <element name="publisher">
+                    <properties>
+                      <type>tag</type>
+                      <access>TRUE</access>
+                      <autocomplete_path>islandora/entities/autocomplete/mods_publisher</autocomplete_path>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>self::node()</path>
+                          <context>parent</context>
+                          <schema/>
+                          <type>element</type>
+                          <prefix>NULL</prefix>
+                          <value>publisher</value>
+                        </create>
+                        <read>
+                          <path>mods:publisher</path>
+                          <context>parent</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                </children>
+              </element>
+              <element name="dateIssued">
+                <properties>
+                  <type>datepicker_xml_form_elements</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Enter the date this resource was published or issued (use "YYYY", "YYYY-MM", or "YYYY-MM-DD" format).</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Date Published or Issued</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>xml</type>
+                      <prefix>NULL</prefix>
+                      <value>&lt;dateIssued encoding="w3cdtf"&gt;%value%&lt;/dateIssued&gt;</value>
+                    </create>
+                    <read>
+                      <path>mods:dateIssued</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+              <element name="edition">
+                <properties>
+                  <type>textfield</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Enter information identifying the version of the resource.</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Edition</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>edition</value>
+                    </create>
+                    <read>
+                      <path>mods:edition</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
               <element name="issuance">
                 <properties>
                   <type>hidden</type>
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <default_value>continuing</default_value>
+                  <default_value>monographic</default_value>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -3270,32 +3941,71 @@ For example, http://viaf.org/viaf/56774589</description>
               </element>
             </children>
           </element>
-          <element name="ISSNIdentifier">
+          <element name="classification">
             <properties>
               <type>textfield</type>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
-              <description>Enter an ISSN (International Standard Serial Number) that identifies the resource.</description>
+              <description>A designation applied to the resource that indicates the subject by applying a formal system of coding and organizing resources according to subject areas.  For example, Library of Congress Classification (LCC) number, Dewey Decimal Classification (DCC) number, etc.</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>ISSN</title>
+              <title>Classification</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
-                  <path>self::node()</path>
-                  <context>parent</context>
+                  <path>/mods:mods/mods:relatedItem</path>
+                  <context>document</context>
                   <schema/>
                   <type>element</type>
                   <prefix>NULL</prefix>
-                  <value>identifier</value>
+                  <value>classification</value>
                 </create>
                 <read>
-                  <path>mods:identifier</path>
-                  <context>parent</context>
+                  <path>/mods:mods/mods:relatedItem/mods:classification</path>
+                  <context>document</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+                <delete>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+          <element name="ISBNIdentifier">
+            <properties>
+              <type>textfield</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Enter an ISBN (International Standard Book Number) that identifies the resource.</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>ISBN</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>/mods:mods/mods:relatedItem</path>
+                  <context>document</context>
+                  <schema/>
+                  <type>xml</type>
+                  <prefix>NULL</prefix>
+                  <value>&lt;identifier type="isbn"&gt;%value%&lt;/identifier&gt;</value>
+                </create>
+                <read>
+                  <path>/mods:mods/mods:relatedItem/mods:identifier[@type='isbn']</path>
+                  <context>document</context>
                 </read>
                 <update>
                   <path>self::node()</path>
@@ -3311,7 +4021,7 @@ For example, http://viaf.org/viaf/56774589</description>
           </element>
           <element name="part">
             <properties>
-              <type>fieldset</type>
+              <type>markup</type>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
@@ -3320,7 +4030,6 @@ For example, http://viaf.org/viaf/56774589</description>
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Enumeration</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -3340,253 +4049,6 @@ For example, http://viaf.org/viaf/56774589</description>
               </actions>
             </properties>
             <children>
-              <element name="volumeDetail">
-                <properties>
-                  <type>markup</type>
-                  <access>TRUE</access>
-                  <collapsed>FALSE</collapsed>
-                  <collapsible>FALSE</collapsible>
-                  <disabled>FALSE</disabled>
-                  <executes_submit_callback>FALSE</executes_submit_callback>
-                  <multiple>FALSE</multiple>
-                  <required>FALSE</required>
-                  <resizable>FALSE</resizable>
-                  <tree>TRUE</tree>
-                  <actions>
-                    <create>
-                      <path>self::node()</path>
-                      <context>parent</context>
-                      <schema/>
-                      <type>element</type>
-                      <prefix>NULL</prefix>
-                      <value>detail</value>
-                    </create>
-                    <read>
-                      <path>mods:detail[@type='volume']</path>
-                      <context>parent</context>
-                    </read>
-                    <update>NULL</update>
-                    <delete>NULL</delete>
-                  </actions>
-                </properties>
-                <children>
-                  <element name="type">
-                    <properties>
-                      <type>hidden</type>
-                      <access>TRUE</access>
-                      <collapsed>FALSE</collapsed>
-                      <collapsible>FALSE</collapsible>
-                      <default_value>volume</default_value>
-                      <disabled>FALSE</disabled>
-                      <executes_submit_callback>FALSE</executes_submit_callback>
-                      <multiple>FALSE</multiple>
-                      <required>FALSE</required>
-                      <resizable>FALSE</resizable>
-                      <title>Type</title>
-                      <tree>TRUE</tree>
-                      <actions>
-                        <create>
-                          <path>self::node()</path>
-                          <context>parent</context>
-                          <schema/>
-                          <type>attribute</type>
-                          <prefix>NULL</prefix>
-                          <value>type</value>
-                        </create>
-                        <read>
-                          <path>@type</path>
-                          <context>parent</context>
-                        </read>
-                        <update>NULL</update>
-                        <delete>NULL</delete>
-                      </actions>
-                    </properties>
-                    <children/>
-                  </element>
-                  <element name="volumeNumber">
-                    <properties>
-                      <type>textfield</type>
-                      <access>TRUE</access>
-                      <collapsed>FALSE</collapsed>
-                      <collapsible>FALSE</collapsible>
-                      <description>Enter periodical volume number information (e.g., 3, VI, etc.).</description>
-                      <disabled>FALSE</disabled>
-                      <executes_submit_callback>FALSE</executes_submit_callback>
-                      <multiple>FALSE</multiple>
-                      <required>FALSE</required>
-                      <resizable>FALSE</resizable>
-                      <title>Volume Number</title>
-                      <tree>TRUE</tree>
-                      <actions>
-                        <create>
-                          <path>self::node()</path>
-                          <context>parent</context>
-                          <schema/>
-                          <type>element</type>
-                          <prefix>NULL</prefix>
-                          <value>number</value>
-                        </create>
-                        <read>
-                          <path>mods:number</path>
-                          <context>parent</context>
-                        </read>
-                        <update>
-                          <path>self::node()</path>
-                          <context>self</context>
-                        </update>
-                        <delete>
-                          <path>self::node()</path>
-                          <context>self</context>
-                        </delete>
-                      </actions>
-                    </properties>
-                    <children/>
-                  </element>
-                </children>
-              </element>
-              <element name="issueDetail">
-                <properties>
-                  <type>markup</type>
-                  <access>TRUE</access>
-                  <collapsed>FALSE</collapsed>
-                  <collapsible>FALSE</collapsible>
-                  <disabled>FALSE</disabled>
-                  <executes_submit_callback>FALSE</executes_submit_callback>
-                  <multiple>FALSE</multiple>
-                  <required>FALSE</required>
-                  <resizable>FALSE</resizable>
-                  <tree>TRUE</tree>
-                  <actions>
-                    <create>
-                      <path>self::node()</path>
-                      <context>parent</context>
-                      <schema/>
-                      <type>element</type>
-                      <prefix>NULL</prefix>
-                      <value>detail</value>
-                    </create>
-                    <read>
-                      <path>mods:detail[@type='number']</path>
-                      <context>parent</context>
-                    </read>
-                    <update>NULL</update>
-                    <delete>NULL</delete>
-                  </actions>
-                </properties>
-                <children>
-                  <element name="type">
-                    <properties>
-                      <type>hidden</type>
-                      <access>TRUE</access>
-                      <collapsed>FALSE</collapsed>
-                      <collapsible>FALSE</collapsible>
-                      <default_value>issue</default_value>
-                      <disabled>FALSE</disabled>
-                      <executes_submit_callback>FALSE</executes_submit_callback>
-                      <multiple>FALSE</multiple>
-                      <required>FALSE</required>
-                      <resizable>FALSE</resizable>
-                      <title>Type</title>
-                      <tree>TRUE</tree>
-                      <actions>
-                        <create>
-                          <path>self::node()</path>
-                          <context>parent</context>
-                          <schema/>
-                          <type>attribute</type>
-                          <prefix>NULL</prefix>
-                          <value>type</value>
-                        </create>
-                        <read>
-                          <path>@type</path>
-                          <context>parent</context>
-                        </read>
-                        <update>NULL</update>
-                        <delete>NULL</delete>
-                      </actions>
-                    </properties>
-                    <children/>
-                  </element>
-                  <element name="issueNumber">
-                    <properties>
-                      <type>textfield</type>
-                      <access>TRUE</access>
-                      <collapsed>FALSE</collapsed>
-                      <collapsible>FALSE</collapsible>
-                      <description>Enter periodical issue number information (e.g., 12).</description>
-                      <disabled>FALSE</disabled>
-                      <executes_submit_callback>FALSE</executes_submit_callback>
-                      <multiple>FALSE</multiple>
-                      <required>FALSE</required>
-                      <resizable>FALSE</resizable>
-                      <title>Issue Number</title>
-                      <tree>TRUE</tree>
-                      <actions>
-                        <create>
-                          <path>self::node()</path>
-                          <context>parent</context>
-                          <schema/>
-                          <type>element</type>
-                          <prefix>NULL</prefix>
-                          <value>number</value>
-                        </create>
-                        <read>
-                          <path>mods:number</path>
-                          <context>parent</context>
-                        </read>
-                        <update>
-                          <path>self::node()</path>
-                          <context>self</context>
-                        </update>
-                        <delete>
-                          <path>self::node()</path>
-                          <context>self</context>
-                        </delete>
-                      </actions>
-                    </properties>
-                    <children/>
-                  </element>
-                </children>
-              </element>
-              <element name="date">
-                <properties>
-                  <type>datepicker_xml_form_elements</type>
-                  <access>TRUE</access>
-                  <collapsed>FALSE</collapsed>
-                  <collapsible>FALSE</collapsible>
-                  <description>Enter periodical date information (use "YYYY", "YYYY-MM", or "YYYY-MM-DD" format).</description>
-                  <disabled>FALSE</disabled>
-                  <executes_submit_callback>FALSE</executes_submit_callback>
-                  <multiple>FALSE</multiple>
-                  <required>FALSE</required>
-                  <resizable>FALSE</resizable>
-                  <title>Date</title>
-                  <tree>TRUE</tree>
-                  <actions>
-                    <create>
-                      <path>self::node()</path>
-                      <context>parent</context>
-                      <schema/>
-                      <type>xml</type>
-                      <prefix>NULL</prefix>
-                      <value>&lt;date encoding="w3cdtf"&gt;%value%&lt;/date&gt;</value>
-                    </create>
-                    <read>
-                      <path>mods:date</path>
-                      <context>parent</context>
-                    </read>
-                    <update>
-                      <path>self::node()</path>
-                      <context>self</context>
-                    </update>
-                    <delete>
-                      <path>self::node()</path>
-                      <context>self</context>
-                    </delete>
-                  </actions>
-                </properties>
-                <children/>
-              </element>
               <element name="extent">
                 <properties>
                   <type>markup</type>
@@ -3655,7 +4117,7 @@ For example, http://viaf.org/viaf/56774589</description>
                       <access>TRUE</access>
                       <collapsed>FALSE</collapsed>
                       <collapsible>FALSE</collapsible>
-                      <description>Enter start and end pages of the periodical article (e.g., pp. 32-49).</description>
+                      <description>Enter start and end pages of the monograph chapter (e.g., pp. 32-49).</description>
                       <disabled>FALSE</disabled>
                       <executes_submit_callback>FALSE</executes_submit_callback>
                       <multiple>FALSE</multiple>
@@ -3716,10 +4178,10 @@ For example, http://viaf.org/viaf/56774589</description>
               <collapsed>TRUE</collapsed>
               <collapsible>TRUE</collapsible>
               <description>Enter a URI (Uniform Resource Identifier) that identifies the resource, i.e., enter a URI to a linked data resource that is the same as this entity (e.g., a VIAF record).
-&lt;br /&gt;
-&amp;#8226; VIAF entity URI formulation: http://viaf.org/viaf/PID
-&lt;br /&gt;
-For example, http://viaf.org/viaf/48146462553927771156</description>
+                &lt;br /&gt;
+                &amp;#8226; VIAF entity URI formulation: http://viaf.org/viaf/PID
+                &lt;br /&gt;
+                For example, http://viaf.org/viaf/48146462553927771156</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>TRUE</multiple>
@@ -3864,6 +4326,308 @@ For example, http://viaf.org/viaf/48146462553927771156</description>
                     <read>
                       <path>mods:url</path>
                       <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="accessCondition">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Access Condition / Condition d'acc&#xE8;s</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="accessCondition1">
+            <properties>
+              <type>select</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>Select the access condition statement (the digital use and reproduction statement) that should be applied to this digital object.  Information about the Creative Commons CC BY-NC and CC BY-NC-SA licenses can be found at &lt;a href="http://creativecommons.org/licenses/" target="_blank"&gt;http://creativecommons.org/licenses/&lt;/a&gt;.  (The Orlando access condition statement only applies to resources associated with the Orlando Project.)</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <options>
+                <index key=""/>
+                <index key="Use of this public-domain resource is governed by the &lt;a rel=&quot;license&quot; href=&quot;http://creativecommons.org/licenses/by-nc/4.0/&quot; target=&quot;blank&quot;&gt;Creative Commons Attribution-NonCommercial 4.0 International License&lt;/a&gt;.">CC BY-NC 4.0</index>
+                <index key="Use of this public-domain resource is governed by the &lt;a rel=&quot;license&quot; href=&quot;http://creativecommons.org/licenses/by-nc-sa/4.0/&quot; target=&quot;_blank&quot;&gt;Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;.">CC BY-NC-SA 4.0</index>
+                <index key="Access to this resource is restricted by a &lt;a rel=&quot;license&quot; href=&quot;http://cwrc.ca/license/the-orlando-project-license.html&quot; target=&quot;_blank&quot;&gt;license&lt;/a&gt; between the University of Alberta and Cambridge University Press.">Orlando</index>
+              </options>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Access Condition Statement</title>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>/mods:mods</path>
+                  <context>document</context>
+                  <schema/>
+                  <type>xml</type>
+                  <prefix>NULL</prefix>
+                  <value>&lt;accessCondition type="use and reproduction"&gt;%value%&lt;/accessCondition&gt;</value>
+                </create>
+                <read>
+                  <path>/mods:mods/mods:accessCondition[@type='use and reproduction']</path>
+                  <context>document</context>
+                </read>
+                <update>NULL</update>
+                <delete>NULL</delete>
+              </actions>
+            </properties>
+            <children/>
+          </element>
+          <element name="accessCondition2">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>If desired, provide another access condition statement (the digital use and reproduction statement) that should be applied to this digital object.  To enter more than one other access condition statement, click on the green [+] button.</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Other Access Condition Statement</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="accessCondition">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>accessCondition</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:accessCondition[@type!='use and reproduction' or not(@type)]</path>
+                      <context>document</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
+      <element name="recordInfo">
+        <properties>
+          <type>hidden</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <tree>TRUE</tree>
+          <actions>
+            <create>
+              <path>/mods:mods</path>
+              <context>document</context>
+              <schema/>
+              <type>xml</type>
+              <prefix>NULL</prefix>
+              <value>&lt;recordInfo&gt;
+                &lt;recordOrigin&gt;This MODS record was created using the Islandora XML Forms collection of Drupal modules.&lt;/recordOrigin&gt;
+                &lt;languageOfCataloging&gt;
+                &lt;languageTerm type="text"&gt;English&lt;/languageTerm&gt;
+                &lt;/languageOfCataloging&gt;
+                &lt;recordContentSource&gt;Canadian Writing Research Collaboratory&lt;/recordContentSource&gt;
+                &lt;/recordInfo&gt;</value>
+            </create>
+            <read>
+              <path>/mods:mods/mods:recordInfo</path>
+              <context>document</context>
+            </read>
+            <update>NULL</update>
+            <delete>NULL</delete>
+          </actions>
+        </properties>
+        <children/>
+      </element>
+      <element name="recordContentSource">
+        <properties>
+          <type>fieldset</type>
+          <access>TRUE</access>
+          <collapsed>TRUE</collapsed>
+          <collapsible>TRUE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Record Content Source / Contenu Source d'enregistrement</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="recordContentSource1">
+            <properties>
+              <type>tabs</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>To enter more than one project, click on the Add button. Use tabs above to edit each project.Note: you can also supply your project's name in the field below.</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Associated Project</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="0">
+                <properties>
+                  <type>tabpanel</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                </properties>
+                <children>
+                  <element name="recordContentSource">
+                    <properties>
+                      <type>select</type>
+                      <access>TRUE</access>
+                      <collapsed>FALSE</collapsed>
+                      <collapsible>FALSE</collapsible>
+                      <description>If applicable and desired, select a project to associate with the creation of this MODS record (any project may use the value "cwrc").</description>
+                      <disabled>FALSE</disabled>
+                      <executes_submit_callback>FALSE</executes_submit_callback>
+                      <multiple>FALSE</multiple>
+                      <options>
+                        <index key=""/>
+                        <canwwr>canwwr</canwwr>
+                        <ceww>ceww</ceww>
+                        <cwrc>cwrc</cwrc>
+                        <eccji>eccji</eccji>
+                        <emic>emic</emic>
+                        <orlando>orlando</orlando>
+                      </options>
+                      <required>FALSE</required>
+                      <resizable>FALSE</resizable>
+                      <title>Project</title>
+                      <tree>TRUE</tree>
+                      <actions>
+                        <create>
+                          <path>/mods:mods/mods:recordInfo</path>
+                          <context>document</context>
+                          <schema/>
+                          <type>element</type>
+                          <prefix>NULL</prefix>
+                          <value>recordContentSource</value>
+                        </create>
+                        <read>
+                          <path>/mods:mods/mods:recordInfo/mods:recordContentSource</path>
+                          <context>document</context>
+                        </read>
+                        <update>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </update>
+                        <delete>
+                          <path>self::node()</path>
+                          <context>self</context>
+                        </delete>
+                      </actions>
+                    </properties>
+                    <children/>
+                  </element>
+                </children>
+              </element>
+            </children>
+          </element>
+          <element name="recordContentSource2">
+            <properties>
+              <type>tags</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <description>If desired, enter a project to associate with the creation of this MODS record.To enter more than one project, click on the green [+] button.</description>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <title>Other Associated Project</title>
+              <tree>TRUE</tree>
+            </properties>
+            <children>
+              <element name="recordContentSource2">
+                <properties>
+                  <type>tag</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>/mods:mods/mods:recordInfo</path>
+                      <context>document</context>
+                      <schema/>
+                      <type>element</type>
+                      <prefix>NULL</prefix>
+                      <value>recordContentSource</value>
+                    </create>
+                    <read>
+                      <path>/mods:mods/mods:recordInfo/mods:recordContentSource</path>
+                      <context>document</context>
                     </read>
                     <update>
                       <path>self::node()</path>
@@ -4031,197 +4795,6 @@ For example, http://viaf.org/viaf/48146462553927771156</description>
                     <read>
                       <path>self::node()</path>
                       <context>parent</context>
-                    </read>
-                    <update>
-                      <path>self::node()</path>
-                      <context>self</context>
-                    </update>
-                    <delete>
-                      <path>self::node()</path>
-                      <context>self</context>
-                    </delete>
-                  </actions>
-                </properties>
-                <children/>
-              </element>
-            </children>
-          </element>
-        </children>
-      </element>
-      <element name="recordInfo">
-        <properties>
-          <type>hidden</type>
-          <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
-          <required>FALSE</required>
-          <resizable>FALSE</resizable>
-          <tree>TRUE</tree>
-          <actions>
-            <create>
-              <path>/mods:mods</path>
-              <context>document</context>
-              <schema/>
-              <type>xml</type>
-              <prefix>NULL</prefix>
-              <value>&lt;recordInfo&gt;
-&lt;recordOrigin&gt;This MODS record was created using the Islandora XML Forms collection of Drupal modules.&lt;/recordOrigin&gt;
-&lt;languageOfCataloging&gt;
-&lt;languageTerm type="text"&gt;English&lt;/languageTerm&gt;
-&lt;/languageOfCataloging&gt;
-&lt;recordContentSource&gt;Canadian Writing Research Collaboratory&lt;/recordContentSource&gt;
-&lt;/recordInfo&gt;</value>
-            </create>
-            <read>
-              <path>/mods:mods/mods:recordInfo</path>
-              <context>document</context>
-            </read>
-            <update>NULL</update>
-            <delete>NULL</delete>
-          </actions>
-        </properties>
-        <children/>
-      </element>
-      <element name="recordContentSource">
-        <properties>
-          <type>fieldset</type>
-          <access>TRUE</access>
-          <collapsed>TRUE</collapsed>
-          <collapsible>TRUE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
-          <required>FALSE</required>
-          <resizable>FALSE</resizable>
-          <title>Record Content Source / Contenu Source d'enregistrement</title>
-          <tree>TRUE</tree>
-        </properties>
-        <children>
-          <element name="recordContentSource1">
-            <properties>
-              <type>tabs</type>
-              <access>TRUE</access>
-              <collapsed>FALSE</collapsed>
-              <collapsible>FALSE</collapsible>
-              <description>To enter more than one project, click on the Add button. Use tabs above to edit each project.  Note: you can also supply your project's name in the field below.</description>
-              <disabled>FALSE</disabled>
-              <executes_submit_callback>FALSE</executes_submit_callback>
-              <multiple>FALSE</multiple>
-              <required>FALSE</required>
-              <resizable>FALSE</resizable>
-              <title>Associated Project</title>
-              <tree>TRUE</tree>
-            </properties>
-            <children>
-              <element name="0">
-                <properties>
-                  <type>tabpanel</type>
-                  <access>TRUE</access>
-                  <collapsed>FALSE</collapsed>
-                  <collapsible>FALSE</collapsible>
-                  <disabled>FALSE</disabled>
-                  <executes_submit_callback>FALSE</executes_submit_callback>
-                  <multiple>FALSE</multiple>
-                  <required>FALSE</required>
-                  <resizable>FALSE</resizable>
-                  <tree>TRUE</tree>
-                </properties>
-                <children>
-                  <element name="recordContentSource">
-                    <properties>
-                      <type>select</type>
-                      <access>TRUE</access>
-                      <collapsed>FALSE</collapsed>
-                      <collapsible>FALSE</collapsible>
-                      <description>If applicable and desired, select a project to associate with the creation of this MODS record (any project may use the value "cwrc").</description>
-                      <disabled>FALSE</disabled>
-                      <executes_submit_callback>FALSE</executes_submit_callback>
-                      <multiple>FALSE</multiple>
-                      <options>
-                        <index key=""/>
-                        <canwwr>canwwr</canwwr>
-                        <ceww>ceww</ceww>
-                        <cwrc>cwrc</cwrc>
-                        <eccji>eccji</eccji>
-                        <emic>emic</emic>
-                        <orlando>orlando</orlando>
-                      </options>
-                      <required>FALSE</required>
-                      <resizable>FALSE</resizable>
-                      <title>Project</title>
-                      <tree>TRUE</tree>
-                      <actions>
-                        <create>
-                          <path>/mods:mods/mods:recordInfo</path>
-                          <context>document</context>
-                          <schema/>
-                          <type>element</type>
-                          <prefix>NULL</prefix>
-                          <value>recordContentSource</value>
-                        </create>
-                        <read>
-                          <path>/mods:mods/mods:recordInfo/mods:recordContentSource</path>
-                          <context>document</context>
-                        </read>
-                        <update>
-                          <path>self::node()</path>
-                          <context>self</context>
-                        </update>
-                        <delete>
-                          <path>self::node()</path>
-                          <context>self</context>
-                        </delete>
-                      </actions>
-                    </properties>
-                    <children/>
-                  </element>
-                </children>
-              </element>
-            </children>
-          </element>
-          <element name="recordContentSource2">
-            <properties>
-              <type>tags</type>
-              <access>TRUE</access>
-              <collapsed>FALSE</collapsed>
-              <collapsible>FALSE</collapsible>
-              <description>If desired, enter a project to associate with the creation of this MODS record.  To enter more than one project, click on the green [+] button.</description>
-              <disabled>FALSE</disabled>
-              <executes_submit_callback>FALSE</executes_submit_callback>
-              <multiple>FALSE</multiple>
-              <required>FALSE</required>
-              <resizable>FALSE</resizable>
-              <title>Other Associated Project</title>
-              <tree>TRUE</tree>
-            </properties>
-            <children>
-              <element name="recordContentSource">
-                <properties>
-                  <type>tag</type>
-                  <access>TRUE</access>
-                  <collapsed>FALSE</collapsed>
-                  <collapsible>FALSE</collapsible>
-                  <disabled>FALSE</disabled>
-                  <executes_submit_callback>FALSE</executes_submit_callback>
-                  <multiple>FALSE</multiple>
-                  <required>FALSE</required>
-                  <resizable>FALSE</resizable>
-                  <tree>TRUE</tree>
-                  <actions>
-                    <create>
-                      <path>/mods:mods/mods:recordInfo</path>
-                      <context>document</context>
-                      <schema/>
-                      <type>element</type>
-                      <prefix>NULL</prefix>
-                      <value>recordContentSource</value>
-                    </create>
-                    <read>
-                      <path>/mods:mods/mods:recordInfo/mods:recordContentSource</path>
-                      <context>document</context>
                     </read>
                     <update>
                       <path>self::node()</path>
