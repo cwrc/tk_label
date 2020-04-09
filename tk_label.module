@@ -89,7 +89,7 @@ if(!isset($form['tk_labels'])) {
     $options[$field_label_uri[0]['value']] = $term->name;
   }
   foreach ($form['tk_labels'] as $key => $tkLabel) {
-    if (is_array($tkLabel) && $tkLabel['#type'] == 'tabpanel') {
+    if (is_array($tkLabel) && isset($tkLabel['#type']) && $tkLabel['#type'] == 'tabpanel') {
       $form['tk_labels'][$key]['tk_label']['#options'] = $options;
       $form['tk_labels'][$key]['tk_label']['#array_key'] = $key;
       $form['tk_labels'][$key]['tk_label']['#ajax'] = array(
@@ -100,6 +100,8 @@ if(!isset($form['tk_labels'])) {
       $form['tk_labels'][$key]['accessionCondition']['#prefix'] = '<div id="tk-labels-accessionCondition-'. $key . '">';
       $form['tk_labels'][$key]['accessionCondition']['#suffix'] = '</div>';
       $form['tk_labels'][$key]['type']['#type'] = 'hidden';
+    } else {
+      watchdog('tk_label', 'Form alter, array without #type <pre>Dumping @variable </pre>', array('@variable' => print_r($tkLabel, true)));
     }
   }
   array_unshift($form['update']['#submit'], 'tk_label_xml_form_builder_datastream_set_right_information_form_submit');
@@ -113,12 +115,20 @@ if(!isset($form['tk_labels'])) {
  */
 function tk_label_change_description_ajax_callback($form, &$form_state) {
   $element = $form_state['triggering_element'];
+  $description = 'null';
+  if(isset($element['#default_value']) && $element['#default_value'] == '') {
+     $description = 'null';
+  } else {
   $term = tk_label_get_term_by_field_value('tk_label', 'field_label_uri', $element['#default_value']);
   $field_description = field_get_items('taxonomy_term', $term, 'description_field');
   $description = strip_tags($field_description[0]['value']);
+  }
+watchdog('tk_label', '<pre>Ajax callback getting label description: Dumping @variable </pre>', array('@variable' => print_r($description, true)));
   $form['tk_labels'][$element['#array_key']]['accessionCondition']['#value'] = $description;
   $form_state['values']['tk_labels'][$element['#array_key']]['accessionCondition'] = $description;
+ // $form_state['values']['tk_labels']['accessCondition']
   return $form['tk_labels'][$element['#array_key']]['accessionCondition'];
+  
 }
 
 
@@ -128,13 +138,16 @@ function tk_label_change_description_ajax_callback($form, &$form_state) {
 function tk_label_xml_form_builder_datastream_set_right_information_form_submit(array $form, array &$form_state) {
   if (!empty($form_state['values']['tk_labels'])) {
     $tk_labels = $form_state['values']['tk_labels'];
+watchdog('tk_label', '<pre>Set description upon mods form submit. Dumping @variable </pre>', array('@variable' => print_r($tk_labels, true)));
     foreach ($tk_labels as $key => $label) {
       if(count($label) > 0 && isset($label['tk_label']) && strlen($label['tk_label']) ) { 
       $term = tk_label_get_term_by_field_value('tk_label', 'field_label_uri', $label['tk_label']);
       $field_description = field_get_items('taxonomy_term', $term, 'description_field');
       $description = strip_tags($field_description[0]['value']);
+      } else {
+        $description = 'null';
+      }
       $form_state['values']['tk_labels'][$key]['accessionCondition'] = $description;
-}
     }
   }
 }
@@ -300,13 +313,20 @@ function _tk_label_add_stamp_labels_to_object($object, &$markup) {
 /**
  * Show TK label to object.
  */
-function _tk_label_add_tk_labels_to_object($object, &$markup) {
+function _tk_label_add_tk_labels_to_object($object, &$markup, $includinginherited) {
   if (!empty($object['MODS'])) {
-    $xlinks = _tk_label_get_attributes_from_xml($object['MODS']->content, '//mods:accessCondition[not(@displayLabel="inherited")]', 'xlink:href');
+    $xpath = '';
+    if($includinginherited) {
+      $xpath = '//mods:accessCondition';
+    } else {
+      $xpath = '//mods:accessCondition[not(@displayLabel="inherited")]';
+    }
+    $xlinks = _tk_label_get_attributes_from_xml($object['MODS']->content, $xpath, 'xlink:href');
     if (!empty($xlinks)) {
       $terms = tk_label_retrieve_term($xlinks);
       $markup .= tk_label_render_link_icon($terms);
     }
+
   }
 }
 
