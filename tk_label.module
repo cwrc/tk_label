@@ -75,8 +75,7 @@ function tk_label_render_link_icon($terms) {
 
 
 function tk_label_form_xml_form_builder_ingest_form_alter(&$form, &$form_state, $form_id) {
-//watchdog('bradmodule', '<pre>Dumping @variable </pre>', array('@variable' => print_r('sitesuper', true)));
-tk_label_form_xml_form_builder_datastream_form_alter($form, $form_state, $form_id);
+  tk_label_form_xml_form_builder_datastream_form_alter($form, $form_state, $form_id);
 }
 
 
@@ -84,11 +83,11 @@ tk_label_form_xml_form_builder_datastream_form_alter($form, $form_state, $form_i
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function tk_label_form_xml_form_builder_datastream_form_alter(&$form, &$form_state, $form_id) {
-if(!isset($form['tk_labels'])) {
-//watchdog('bradmodule', '<pre>Dumping @variable </pre>', array('@variable' => print_r('untriggered', true)));    
-return;
+
+  if(!isset($form['tk_labels'])) {
+    return;
   }
-//watchdog('bradmodule', '<pre>Dumping @variable </pre>', array('@variable' => print_r('triggered', true)));
+
   $vocabulary = taxonomy_vocabulary_machine_name_load('tk_label');
   $terms = !empty($vocabulary) ? taxonomy_term_load_multiple(array(), array('vid' => $vocabulary->vid)) : array();
   $options = array('' => '- None -');
@@ -100,21 +99,25 @@ return;
     if (is_array($tkLabel) && isset($tkLabel['#type']) && $tkLabel['#type'] == 'tabpanel') {
       $form['tk_labels'][$key]['tk_label']['#options'] = $options;
       $form['tk_labels'][$key]['tk_label']['#array_key'] = $key;
-      $form['tk_labels'][$key]['tk_label']['#ajax'] = array(
+     /* $form['tk_labels'][$key]['tk_label']['#ajax'] = array(
         'callback' => 'tk_label_change_description_ajax_callback',
         'wrapper' => 'tk-labels-accessionCondition-' . $key,
         'method' => 'replace',
-      );
+      );*/
       $form['tk_labels'][$key]['accessionCondition']['#prefix'] = '<div id="tk-labels-accessionCondition-'. $key . '">';
       $form['tk_labels'][$key]['accessionCondition']['#suffix'] = '</div>';
       $form['tk_labels'][$key]['type']['#type'] = 'hidden';
     } else {
 	
-      //watchdog('tk_label', 'Form alter, array without #type <pre>@key: @variable </pre>', array('@variable' => print_r($tkLabel, true),'@key' => $key));
     }
   }
-  array_unshift($form['update']['#submit'], 'tk_label_xml_form_builder_datastream_set_right_information_form_submit');
-  $form['update']['#submit'][] = 'tk_label_xml_form_builder_datastream_form_metadata_form_submit';
+  if ( isset($form['update']['#submit']) ) {
+    array_unshift($form['update']['#submit'], 'tk_label_xml_form_builder_datastream_set_right_information_form_submit');
+  } else {
+    // This happens on ingest
+    $form['next']['#submit'][] = 'tk_label_xml_form_builder_datastream_set_right_information_form_submit';
+  }
+//  $form['update']['#submit'][] = 'tk_label_xml_form_builder_datastream_form_metadata_form_submit';
 
 }
 
@@ -123,16 +126,15 @@ return;
  * changing the TK Label URI value.
  */
 function tk_label_change_description_ajax_callback($form, &$form_state) {
-  $element = $form_state['triggering_element'];
+$element = $form_state['triggering_element'];
   $description = 'null';
   if(isset($element['#default_value']) && $element['#default_value'] == '') {
      $description = 'null';
   } else {
-  $term = tk_label_get_term_by_field_value('tk_label', 'field_label_uri', $element['#default_value']);
-  $field_description = field_get_items('taxonomy_term', $term, 'description_field');
-  $description = strip_tags($field_description[0]['value']);
+    $term = tk_label_get_term_by_field_value('tk_label', 'field_label_uri', $element['#default_value']);
+    $field_description = field_get_items('taxonomy_term', $term, 'description_field');
+    $description = strip_tags($field_description[0]['value']);
   }
-//watchdog('tk_label', '<pre>Ajax callback getting label description: Dumping @variable </pre>', array('@variable' => print_r($description, true)));
   $form['tk_labels'][$element['#array_key']]['accessionCondition']['#value'] = $description;
   $form_state['values']['tk_labels'][$element['#array_key']]['accessionCondition'] = $description;
  // $form_state['values']['tk_labels']['accessCondition']
@@ -147,7 +149,6 @@ function tk_label_change_description_ajax_callback($form, &$form_state) {
 function tk_label_xml_form_builder_datastream_set_right_information_form_submit(array $form, array &$form_state) {
   if (!empty($form_state['values']['tk_labels'])) {
     $tk_labels = $form_state['values']['tk_labels'];
-//watchdog('tk_label', '<pre>Set description upon mods form submit. Dumping @variable </pre>', array('@variable' => print_r($tk_labels, true)));
     foreach ($tk_labels as $key => $label) {
       if(count($label) > 0 && isset($label['tk_label']) && strlen($label['tk_label']) ) { 
       $term = tk_label_get_term_by_field_value('tk_label', 'field_label_uri', $label['tk_label']);
@@ -254,7 +255,6 @@ function tk_label_xml_datastream_save_metadata_to_object($child, $tk_labels, &$c
       }
     }
 $text = $doc->saveXML();    
-//watchdog('Licensing Labels - Save', '<pre>Dumping @variable </pre>', array('@variable' => print_r($text, true)));
 $mods->setContentFromString($text);
   }
 }
